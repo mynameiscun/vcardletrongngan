@@ -17,7 +17,7 @@ const PROFILE = {
   zalo: "https://zalo.me/0772771675",
   facebook: "",
   avatar: "",
-  cardUrl: "https://mynameiscun.github.io/vcardletrongngan/",
+  cardUrl: "http://vcar.letrongngan/",
 };
 
 const TEXT = {

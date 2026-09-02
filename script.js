@@ -16,7 +16,8 @@ const PROFILE = {
   website: "",
   zalo: "https://zalo.me/0772771675",
   facebook: "",
-  avatar: ""
+  avatar: "",
+  cardUrl: "https://mynameiscun.github.io/vcardletrongngan/",
 };
 
 const TEXT = {
@@ -218,7 +219,7 @@ function createQrCode() {
 
   try {
     const qr = window.qrcode(0, "H");
-    qr.addData(buildVCard(), "Byte");
+    qr.addData(PROFILE.cardUrl, "Byte");
     qr.make();
 
     elements.qrCode.innerHTML = qr.createSvgTag({

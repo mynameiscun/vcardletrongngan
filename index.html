@@ -150,24 +150,17 @@
             </button>
           </div>
 
-          <a id="saveContactButton" class="save-contact" href="contact.vcf" download="Le-Trong-Ngan.vcf">
-            <svg><use href="#icon-user-plus"></use></svg>
-            <span data-i18n="addContact">Thêm vào danh bạ</span>
-          </a>
-
-          <div class="social-section">
-            <h2 data-i18n="connect">Kết nối với tôi</h2>
-            <div class="social-grid">
-              <a id="zaloSocial" class="social-link zalo-link" href="https://zalo.me/0772771675" target="_blank" rel="noreferrer">
-                <svg><use href="#icon-message"></use></svg>
-                Zalo
-              </a>
-              <button id="facebookButton" class="social-link facebook-link" type="button">
-                <svg><use href="#icon-users"></use></svg>
-                Facebook
-              </button>
-            </div>
-          </div>
+         <a
+        id="saveContactButton"
+        class="floating-contact"
+        href="contact.vcf"
+        download="Le-Trong-Ngan.vcf"
+        aria-label="Thêm vào danh bạ"
+        title="Thêm vào danh bạ"
+      >
+        <svg><use href="#icon-user-plus"></use></svg>
+        <span class="sr-only" data-i18n="addContact"></span>
+      </a>
         </section>
       </article>
     </main>

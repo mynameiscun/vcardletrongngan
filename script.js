@@ -15,9 +15,8 @@ const PROFILE = {
   email: "trongngan@gmail.com",
   website: "",
   zalo: "https://zalo.me/0772771675",
-  facebook: "",
-  avatar: "",
-  cardUrl: "http://vcar.letrongngan/",
+  cardUrl: "https://mynameiscun.github.io/vcardletrongngan/",
+  avatar: ""
 };
 
 const TEXT = {
@@ -31,9 +30,8 @@ const TEXT = {
     websiteLabel: "Website",
     updating: "Đang cập nhật",
     addContact: "Thêm vào danh bạ",
-    connect: "Kết nối với tôi",
-    qrTitle: "MÃ QR VCARD",
-    qrDescription: "Đưa camera điện thoại lên để quét trực tiếp danh thiếp này.",
+    qrTitle: "MÃ QR WEBSITE",
+    qrDescription: "Quét mã để mở trang danh thiếp điện tử này.",
     downloadQr: "Tải ảnh QR có logo",
     copied: "Đã sao chép",
     copyFailed: "Không thể sao chép. Vui lòng thử lại.",
@@ -44,7 +42,7 @@ const TEXT = {
     unavailable: "Liên kết đang được cập nhật.",
     qrError: "Không thể tạo mã QR.",
     switchLanguage: "Chuyển sang tiếng Anh",
-    openQr: "Mở mã QR vCard",
+    openQr: "Mở mã QR website",
     close: "Đóng",
     copyPhone: "Sao chép số điện thoại",
     copyEmail: "Sao chép địa chỉ email"
@@ -59,9 +57,8 @@ const TEXT = {
     websiteLabel: "Website",
     updating: "Coming soon",
     addContact: "Save to contacts",
-    connect: "Connect with me",
-    qrTitle: "VCARD QR CODE",
-    qrDescription: "Point your phone camera at the code to save this digital card.",
+    qrTitle: "WEBSITE QR CODE",
+    qrDescription: "Scan the code to open this digital business card.",
     downloadQr: "Download QR with logo",
     copied: "Copied",
     copyFailed: "Unable to copy. Please try again.",
@@ -72,7 +69,7 @@ const TEXT = {
     unavailable: "This link is being updated.",
     qrError: "Unable to generate the QR code.",
     switchLanguage: "Chuyển sang tiếng Việt",
-    openQr: "Open vCard QR code",
+    openQr: "Open website QR code",
     close: "Close",
     copyPhone: "Copy phone number",
     copyEmail: "Copy email address"
@@ -95,7 +92,6 @@ const elements = {
   shareButton: document.getElementById("shareButton"),
   saveContactButton: document.getElementById("saveContactButton"),
   websiteButton: document.getElementById("websiteButton"),
-  facebookButton: document.getElementById("facebookButton"),
   avatarImage: document.getElementById("avatarImage"),
   avatarInitials: document.getElementById("avatarInitials"),
   toast: document.getElementById("toast")
@@ -139,8 +135,6 @@ function updateProfile() {
   document.getElementById("emailText").textContent = PROFILE.email;
 
   document.getElementById("zaloAction").href = PROFILE.zalo;
-  document.getElementById("zaloSocial").href = PROFILE.zalo;
-
   if (PROFILE.website) {
     document.getElementById("websiteText").removeAttribute("data-i18n");
     document.getElementById("websiteText").textContent = PROFILE.website.replace(/^https?:\/\//, "").replace(/\/$/, "");
@@ -161,6 +155,8 @@ function updateLanguage() {
   elements.languageButton.setAttribute("aria-label", t.switchLanguage);
   elements.openQrButton.setAttribute("aria-label", t.openQr);
   elements.closeQrButton.setAttribute("aria-label", t.close);
+  elements.saveContactButton.setAttribute("aria-label", t.addContact);
+  elements.saveContactButton.setAttribute("title", t.addContact);
 
   const copyButtons = document.querySelectorAll(".copy-button");
   copyButtons[0].setAttribute("aria-label", t.copyPhone);
@@ -226,8 +222,8 @@ function createQrCode() {
       cellSize: 8,
       margin: 32,
       scalable: true,
-      title: `${PROFILE.name} vCard QR`,
-      alt: `QR vCard ${PROFILE.name}`
+      title: `${PROFILE.name} website QR`,
+      alt: `QR website ${PROFILE.name}`
     });
   } catch {
     showToast(TEXT[currentLanguage].qrError);
@@ -329,7 +325,7 @@ function downloadQrCode() {
 
     canvas.toBlob((blob) => {
       if (blob) {
-        downloadBlob(blob, "QR-Le-Trong-Ngan.png");
+        downloadBlob(blob, "QR-Link-Le-Trong-Ngan.png");
         showToast(TEXT[currentLanguage].qrSaved);
       }
       URL.revokeObjectURL(sourceUrl);
@@ -359,12 +355,6 @@ elements.saveContactButton.addEventListener("click", saveContact);
 elements.websiteButton.addEventListener("click", () => {
   PROFILE.website
     ? window.open(PROFILE.website, "_blank", "noopener,noreferrer")
-    : showToast(TEXT[currentLanguage].unavailable);
-});
-
-elements.facebookButton.addEventListener("click", () => {
-  PROFILE.facebook
-    ? window.open(PROFILE.facebook, "_blank", "noopener,noreferrer")
     : showToast(TEXT[currentLanguage].unavailable);
 });
 
